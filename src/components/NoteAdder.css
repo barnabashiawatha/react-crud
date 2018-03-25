@@ -1,0 +1,78 @@
+.button {
+  margin: 20px auto 10px auto;
+  display: block;
+  width: 200px;
+  height: 40px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.button_enable {
+  background: #ececec;
+  border: none;
+  color: #000000;
+  font-family: "Arial", sans-serif;
+}
+
+.button_enable:hover {
+  background: #f37171;
+}
+
+.button_disable {
+  background: #ececec;
+  border: none;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+}
+
+.table__cell {
+  width: 100px;
+  height: 40px;
+  text-align: left;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.table__cell_button {
+  padding: 0;
+}
+
+.button_table {
+  width: 100%;
+  background: #61c5ff;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  margin: 0 auto;
+}
+
+.button_table_edit {
+  background: #f37171;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  margin: 0 auto;
+}
+
+.button_table-add {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  margin: 0 auto;
+}
+
+.button_enable_table-add {
+  background: #61c5ff;
+}
+
+.table__input {
+  border: none;
+  height: 40px;
+  width: 100%;
+  background: #eeeeee;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}

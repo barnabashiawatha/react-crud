@@ -1,0 +1,71 @@
+.login {
+  padding-left: 10px;
+  box-sizing: border-box;
+  display: block;
+  margin: 10px auto 20px auto;
+  width: 200px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.form {
+    margin-top: 20%;
+}
+
+.form__fieldset {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.password {
+  padding-left: 10px;
+  box-sizing: border-box;
+  display: block;
+  margin: 10px auto 20px auto;
+  width: 200px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.button {
+  margin: 20px auto 10px auto;
+  display: block;
+  width: 200px;
+  height: 40px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.button_enable {
+  background: #ececec;
+  border: none;
+  color: #000000;
+  font-family: "Arial", sans-serif;
+}
+
+.button_enable:hover {
+  background: #f37171;
+}
+
+.form-massage {
+  width: 250px;
+  margin: 10px auto;
+  font-size: 15px;
+}
+
+.button_enable:hover {
+  background: #f37171;
+}
+
+.button_up {
+  margin-top: 30px;
+}
+
+.button_disable {
+  background: #ececec;
+  border: none;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+}
