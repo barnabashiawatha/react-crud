@@ -1,26 +1,32 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var createReactClass = require('create-react-class');
 require("./Login.css");
 
-var Login = createReactClass({
-  getInitialState: function() {
-    return {
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       loginIsEmpty: true,
       passwordIsEmpty: true,
-      infoMassageText: "",
+      infoMassageText: ""
     };
-  },
 
-  onFieldChange: function(fieldName, event) {
+    this.onFieldChange = this.onFieldChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this._checkLocalStorage = this._checkLocalStorage.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  onFieldChange(fieldName, event) {
     if (event.target.value.trim().length > 0) {
       this.setState({["" + fieldName]: false});
     } else {
       this.setState({["" + fieldName]: true});
     }
-  },
+  }
 
-  handleLogin: function() {
+  handleLogin() {
     var login = ReactDOM.findDOMNode(this.refs.login).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
 
@@ -37,9 +43,9 @@ var Login = createReactClass({
       loginIsEmpty: true,
       passwordIsEmpty: true
     });
-  },
+  }
 
-  _checkLocalStorage: function(account) {
+  _checkLocalStorage(account) {
     var accounts = JSON.parse(localStorage.getItem("accounts"));
 
     if (accounts) {
@@ -63,13 +69,13 @@ var Login = createReactClass({
     this.setState({
         infoMassageText: "No account matches these login and password."
     });
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     ReactDOM.findDOMNode(this.refs.login).focus();
-  },
+  }
 
-  render: function() {
+  render() {
     var loginIsEmpty = this.state.loginIsEmpty;
     var passwordIsEmpty = this.state.passwordIsEmpty;
     var infoMassageText = this.state.infoMassageText;
@@ -112,6 +118,6 @@ var Login = createReactClass({
       </div>
     );
   }
-});
+}
 
 module.exports = Login;

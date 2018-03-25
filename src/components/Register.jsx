@@ -1,31 +1,37 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var createReactClass = require('create-react-class');
 require("./Register.css");
 
-var Register = createReactClass({
-  getInitialState: function() {
-    return {
+class Register extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       loginIsEmpty: true,
       passwordIsEmpty: true,
       buttonMode: false,
       infoMassageText: ""
     };
-  },
 
-  onFieldChange: function(fieldName, event) {
+    this.onFieldChange - this.onFieldChange.bind(this);
+    this.componentDidMount - this.componentDidMount.bind(this);
+    this.handleRegister - this.handleRegister.bind(this);
+    this._updateLocalStorage - this._updateLocalStorage.bind(this);
+  }
+
+  onFieldChange(fieldName, event) {
     if (event.target.value.trim().length > 0) {
       this.setState({["" + fieldName]: false});
     } else {
       this.setState({["" + fieldName]: true})
     }
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     ReactDOM.findDOMNode(this.refs.login).focus();
-  },
+  }
 
-  handleRegister: function() {
+  handleRegister() {
     var login = ReactDOM.findDOMNode(this.refs.login).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
 
@@ -44,9 +50,9 @@ var Register = createReactClass({
       loginIsEmpty: true,
       passwordIsEmpty: true
     });
-  },
+  }
 
-  _updateLocalStorage: function(account) {
+  _updateLocalStorage(account) {
     var accounts = JSON.parse(localStorage.getItem("accounts"));
 
     if (accounts) {
@@ -73,9 +79,9 @@ var Register = createReactClass({
     this.setState({
       infoMassageText: "Registration complete."
     });     
-  },
+  }
 
-  render: function() {
+  render() {
     var loginIsEmpty = this.state.loginIsEmpty;
     var passwordIsEmpty = this.state.passwordIsEmpty;
     var buttonMode = (loginIsEmpty || passwordIsEmpty);
@@ -105,7 +111,7 @@ var Register = createReactClass({
             <button 
               className={"button button_up " + (buttonMode ? "button_disable" : "button_enable")} 
               type="button"
-              onClick={this.handleRegister}
+              onClick={this.handleRegister.bind(this)}
               disabled={passwordIsEmpty || loginIsEmpty}>
               Register  
             </button>
@@ -120,6 +126,6 @@ var Register = createReactClass({
       </div>
     );
   }
-});
+};
 
 module.exports = Register;

@@ -2,38 +2,44 @@ var React = require("react");
 var Login = require("./Login.jsx");
 var Register = require("./Register.jsx");
 var Crud = require("./Crud.jsx");
-var createReactClass = require('create-react-class');
 
-var App = createReactClass({
-  getInitialState: function() {
-    return {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+      this.state = {
       inputRegisterLoginValue: "",
       inputRegisterPasswordValue: "",
       mode: 0,
       login: ""
-    };
-  },
+    }
 
-  handleSignUp: function() {
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleMode = this.handleMode.bind(this);
+  }
+
+  handleSignUp() {
     this.setState({ mode: 1 });
-  },
+  }
 
-  handleSignIn: function() {
+  handleSignIn() {
     this.setState({ mode: 0 });
-  },
+  }
 
-  handleMode: function() {
+  handleMode() {
     this.setState({ mode: 2 });
-  },
+  }
 
-  handleLogin: function(login) {
+  handleLogin(login) {
     this.setState({ 
       login: login,
       mode: 2 
     });
-  },
+  }
 
-  render: function() {
+  render() {
     if (this.state.mode == 0) {
       return (
         <Login onSignUp={this.handleSignUp} onLogin={this.handleLogin} />
@@ -48,6 +54,6 @@ var App = createReactClass({
       );
     }
   }
-});
+}
 
 module.exports = App;

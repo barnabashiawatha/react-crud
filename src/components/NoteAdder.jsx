@@ -1,19 +1,23 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var createReactClass = require('create-react-class');
 require("./NoteAdder.css");
 
-var NoteAdder = createReactClass({
-  getInitialState: function() {
-    return {
+class NoteAdder extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       name: ["", true],
       lastName: ["", true],
       address: ["", true],
       phone: ["", true]
     };
-  },
 
-  handleAddNote: function() {
+    this.handleAddNote = this.handleAddNote.bind(this);
+    this.onFieldChange = this.onFieldChange.bind(this);
+  }
+
+  handleAddNote() {
     var name = this.state.name[0];
     var lastName = this.state.lastName[0];
     var address = this.state.address[0];
@@ -40,9 +44,9 @@ var NoteAdder = createReactClass({
       address: ["", true],
       phone: ["", true]
     });
-  },
+  }
 
-  onFieldChange: function(fieldName, event) {
+  onFieldChange(fieldName, event) {
     var note = [event.target.value.trim()]
     this.setState({
       ["" + fieldName]: note
@@ -59,9 +63,9 @@ var NoteAdder = createReactClass({
         [this.refs["" + fieldName]]: note
       });
     }
-  },
+  }
 
-  render: function() {
+  render() {
     var nameIsEmpty = this.state.name[1];
     var lastNameIsEmpty = this.state.lastName[1];
     var addressIsEmpty = this.state.address[1];
@@ -118,6 +122,6 @@ var NoteAdder = createReactClass({
       </table>
     );
   }
-});
+};
 
 module.exports = NoteAdder;

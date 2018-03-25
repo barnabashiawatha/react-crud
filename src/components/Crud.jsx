@@ -4,15 +4,23 @@ var NoteAdder = require("./NoteAdder.jsx");
 var createReactClass = require('create-react-class');
 require("./Crud.css");
 
-var Crud = createReactClass({
-  getInitialState: function() {
-     return ({
+class Crud extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       notes: [],
       login: this.props.login
-     });
-  },
+    };
 
-  handleAddNote: function(note) {
+    this.handleAddNote = this.handleAddNote.bind(this);
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
+    this.handleEditNote = this.handleEditNote.bind(this);
+    this._updateLocalStorage = this._updateLocalStorage.bind(this);
+    this._loadLocalStorage = this._loadLocalStorage.bind(this);
+  }
+
+  handleAddNote(note) {
     var newNotes = this.state.notes;
     newNotes.unshift(note);
 
@@ -20,9 +28,9 @@ var Crud = createReactClass({
     this.setState({
       notes: newNotes
     });
-  },
+  }
 
-  handleDeleteNote: function(note) {
+  handleDeleteNote(note) {
     var noteId = note.id;
     var newNotes = this.state.notes.filter(function(note) {
       return note.id !== noteId;
@@ -31,9 +39,9 @@ var Crud = createReactClass({
     this.setState({
       notes: newNotes
     });
-  },
+  }
 
-  handleEditNote: function(note) {
+  handleEditNote(note) {
     for (var i = 0; i < this.state.notes.length; i++) {
       if (this.state.notes[i].id == note.id) {
         var newNotes = this.state.notes;
@@ -43,9 +51,9 @@ var Crud = createReactClass({
         });
       }
     }
-  },
+  }
 
-  _updateLocalStorage: function() {
+  _updateLocalStorage() {
     var accounts = JSON.parse(localStorage.getItem("accounts"));
 
     for (var i = 0; i < accounts.length; i++) {
@@ -54,9 +62,9 @@ var Crud = createReactClass({
         localStorage.setItem("accounts", JSON.stringify(accounts));
       }
     }
-  },
+  }
 
-  _loadLocalStorage: function() {
+  _loadLocalStorage() {
     var accounts = JSON.parse(localStorage.getItem("accounts"));
 
     for (var i = 0; i < accounts.length; i++) {
@@ -66,9 +74,9 @@ var Crud = createReactClass({
         });
       }
     } 
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="crud">
         
@@ -80,15 +88,15 @@ var Crud = createReactClass({
           login={this.state.login} />
       </div>
     );
-  },
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     this._loadLocalStorage();
-  },
+  }
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this._updateLocalStorage();
   }
-});
+};
 
 module.exports = Crud;
